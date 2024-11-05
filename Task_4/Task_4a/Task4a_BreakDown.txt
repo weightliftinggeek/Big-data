@@ -1,0 +1,23 @@
+    val dc = docwords.toDF("docId", "vocab1", "count")
+
+    val docwordsgrouppedDF = docwords.groupBy($"vocabId").sum("count")
+    val dcjoingroupped = dc.join(docwordsgrouppedDF, $"vocabId" === $"vocab1" , "inner")
+
+    dcjoingroupped.show
+
+    val dcjoingrouppedfilter = dcjoingroupped.filter($"sum(count)" > 1000)
+
+    dcjoingrouppedfilter.show
+
+    val dcfrequent = dcjoingrouppedfilter.select($"vocabId", $"docId", $"count")
+
+    dcfrequent.show
+
+    dcfrequent.write.mode("overwrite").parquet(frequentDocwordsFilename)
+
+    val dcfrequentparquetDF = spark.read.parquet(frequentDocwordsFilename)
+
+    dcfrequent.write.mode("overwrite").csv("Assignment_Data/Task_4a-out.csv")
+
+    dcfrequentparquetDF.show
+
