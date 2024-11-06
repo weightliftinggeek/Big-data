@@ -140,8 +140,15 @@ For example the following format and content for the text file will also be acce
 (2,(motorbike, boat))  
 (1,(plane, boat))  
 
-
-
+# Task bonus
+Using spark perform the following task using the data set of task 2.  
+[Spark RDD or Spark SQL] Find the hash tag name that has increased the number of tweets the most from among any two consecutive months of any hash tag name.  
+Consecutive month means for example, 200801 to 200802, or 200902 to 200903, etc.  
+Report the hash tag name, the 1st month count, and the 2nd month count using println.  
+For the small example data set of task 2 the output would be:  
+Hash tag name: mycoolwife  
+count of month 200812: 100  
+count of month 200901: 201  
 
 
 
